@@ -67,5 +67,105 @@ public class Principal {
                 VIP comprador = new VIP(nombre, saldo, noMembresia, categoriaMembresia);
             }
         }
+
+        int opcion, opcion2, seleccion;
+        do{
+            System.out.println("Bienvenido a la tienda Coper-Brent");
+            System.out.println("Que desea comprar?");
+            System.out.println("1.Computadoras\n2.Dispositivos moviles\n3.Televisiones\n4.Salir");
+            opcion = scanner.nextInt();
+            switch(opcion){
+                case 1:
+                    System.out.println("Que tipo de computadora desea comprar?");
+                    System.out.println("1.Laptop\n2.PC");
+                    opcion2 = scanner.nextInt();
+                    switch(opcion2){
+                        case 1:
+                            seleccion = Submenu("Laptop", laptops);
+                            if (seleccion == -1){
+                                break;
+                            }
+                            carritoDeCompras.add(laptops.get(seleccion));
+                            laptops.remove(seleccion);
+                            break;
+                        case 2:
+                            seleccion = Submenu("PC", PCs);
+                            if (seleccion == -1){
+                                break;
+                            }
+                            carritoDeCompras.add(PCs.get(seleccion));
+                            PCs.remove(seleccion);
+                            break;
+                        default:
+                            System.out.println("Opcion no valida");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Que tipo de dispositivo movil desea comprar?");
+                    System.out.println("1.Celular\n2.Smartphone\n3.Tablet");
+                    opcion2 = scanner.nextInt();
+                    switch(opcion2){
+                        case 1:
+                            seleccion = Submenu("Celular", celulares);
+                            if (seleccion == -1){
+                                break;
+                            }
+                            carritoDeCompras.add(celulares.get(seleccion));
+                            celulares.remove(seleccion);
+                            break;
+                        case 2:
+                            seleccion = Submenu("Smartphone", smartphones);
+                            if (seleccion == -1){
+                                break;
+                            }
+                            carritoDeCompras.add(smartphones.get(seleccion));
+                            smartphones.remove(seleccion);
+                            break;
+                        case 3:
+                            seleccion = Submenu("Tablet", tabletas);
+                            if (seleccion == -1){
+                                break;
+                            }
+                            carritoDeCompras.add(tabletas.get(seleccion));
+                            tabletas.remove(seleccion);
+                            break;
+                        default:
+                            System.out.println("Opcion no valida");
+                    }
+                    break;
+                case 3:
+                    seleccion = Submenu("Television", televisiones);
+                    if (seleccion == -1){
+                        break;
+                    }
+                    carritoDeCompras.add(televisiones.get(seleccion));
+                    televisiones.remove(seleccion);
+                    break;
+                case 4:
+                    scanner.close();
+                    System.out.println("Gracias por sus selecciones, ahora pase a la zona de cobro");
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
+            }
+        }while(opcion!= 4);
+    
+
+    }
+    public static int Submenu(String nombre, ArrayList<DispositivoElectronico> tipo){
+        if(tipo.isEmpty()){
+            System.out.println("Lo siento, no contamos con " + nombre + "s por el momento");
+            return -1;
+        }
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Las " + nombre + "s que tenemos son:");
+        int i=1;
+        for(DispositivoElectronico lista: tipo){
+            System.out.println("---------- " + nombre + " #" + i + " ----------");
+            i++;
+            lista.imprimirDatos();
+        }
+        System.out.print("Eliga el numero del producto: ");
+        return (sc.nextInt() -1);
     }
 }
