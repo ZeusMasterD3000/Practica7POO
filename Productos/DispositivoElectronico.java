@@ -1,4 +1,4 @@
-package Practica_7.Productos;
+package Productos;
 
 public class DispositivoElectronico {
     

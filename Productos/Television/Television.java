@@ -1,6 +1,6 @@
-package Practica_7.Productos.Television;
+package Productos.Television;
 
-import Practica_7.Productos.DispositivoElectronico;
+import Productos.DispositivoElectronico;
 
 public class Television extends DispositivoElectronico{
     

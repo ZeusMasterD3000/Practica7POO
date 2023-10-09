@@ -1,5 +1,4 @@
-package Practica_7.Productos.Computadora;
-
+package Productos.Computadora;
 
 public class PC extends Computadora{
     

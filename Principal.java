@@ -1,11 +1,9 @@
-package Practica_7;
-
 import java.util.*;
-import Practica_7.Comprador.*;
-import Practica_7.Productos.DispositivoElectronico;
-import Practica_7.Productos.Television.*;
-import Practica_7.Productos.Dispositivo_Movil.*;
-import Practica_7.Productos.Computadora.*;
+import Comprador.*;
+import Productos.DispositivoElectronico;
+import Productos.Television.*;
+import Productos.Dispositivo_Movil.*;
+import Productos.Computadora.*;
 
 public class Principal {
     public static void main(String[] args) {
@@ -17,7 +15,7 @@ public class Principal {
         productos.add(celulares);
         ArrayList<DispositivoElectronico> smartphones = new ArrayList<>(null);
         smartphones.add(new Smartphone("5476", "motorola Moto G82", 3999.99, "5G", "25 MP", "12 WATS"));
-        smartphones.add(new Smartphone("6923", "Apple iPhone 14 Pro MAX", 28,999.00, "5G", "48 MP", "25 WATS"));
+        smartphones.add(new Smartphone("6923", "Apple iPhone 14 Pro MAX", 999.00, "5G", "48 MP", "25 WATS"));
         productos.add(smartphones);
         ArrayList<DispositivoElectronico> tabletas = new ArrayList<>(null);
         tabletas.add(new Tablet("2394", "Xiaomi RedMi Pad Tablet", 4372.00, "5G", "8 MP", false));
@@ -26,8 +24,8 @@ public class Principal {
         ArrayList<DispositivoElectronico> televisiones = new ArrayList<>(null);
         televisiones.add(new Television("9128", "Samsung Crystal CU Series UHD", 6600, 50, true, "4K"));
         televisiones.add(new Television("1934", "TLC", 6600, 50, true, "4K"));
-        televisiones.add(new Television("9128", "Samsung Crystal CU Series UHD", 6600, "50''", true, "4K"));
-        televisiones.add(new Television("1934", "TLC", 6600, "50''", true, "4K"));
+        televisiones.add(new Television("9128", "Samsung Crystal CU Series UHD", 6600, 50, true, "4K"));
+        televisiones.add(new Television("1934", "TLC", 6600, 50, true, "4K"));
         ArrayList<DispositivoElectronico> laptops = new ArrayList<>(null);
         laptops.add(new Laptop("0122", "HUAVEI MateBook ", 13999.00, "Windows 11 home", 16, "90%"));
         laptops.add(new Laptop("5922", "HP Laptop 15-dw3500la ", 7199.00, "Windows 11", 8, "75%"));
@@ -35,9 +33,9 @@ public class Principal {
         laptops.add(new Laptop("4369", "Asus FX506HF-ES51 TUF Gaming F15 ", 15427.00, "Windows 11", 8, "90%"));
         productos.add(laptops);
         ArrayList<DispositivoElectronico> PCs = new ArrayList<>(null);
-        PCs.add(new PC("1754", "Lenovo", 25_000, "Intel i7", 32));
-        PCs.add(new PC("1798", "Toshiba", 19_000, "Nvidia 3500", 24));
-        PCs.add(new PC("1850", "Asus", 45_000, "Nvidia Geo Force 5000", 64));
+        PCs.add(new PC("1754", "Lenovo", 25_000, "Intel i7", 32, true));
+        PCs.add(new PC("1798", "Toshiba", 19_000, "Nvidia 3500", 24, true));
+        PCs.add(new PC("1850", "Asus", 45_000, "Nvidia Geo Force 5000", 64, true));
         productos.add(PCs);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Inicia sesion: ");

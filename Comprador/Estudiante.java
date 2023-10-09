@@ -1,4 +1,4 @@
-package Practica_7.Comprador;
+package Comprador;
 
 public class Estudiante extends Comprador{
 

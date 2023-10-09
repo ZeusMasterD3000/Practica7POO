@@ -1,6 +1,6 @@
-package Practica_7.Productos.Computadora;
+package Productos.Computadora;
 
-import Practica_7.Productos.DispositivoElectronico;
+import Productos.DispositivoElectronico;
 
 public class Computadora extends DispositivoElectronico{
 

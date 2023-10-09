@@ -1,6 +1,6 @@
-package Practica_7.Productos.Dispositivo_Movil;
+package Productos.Dispositivo_Movil;
 
-import Practica_7.Productos.DispositivoElectronico;
+import Productos.DispositivoElectronico;
 
 public class DispositivoMovil extends DispositivoElectronico{
 

@@ -1,4 +1,4 @@
-package Practica_7.Productos.Dispositivo_Movil;
+package Productos.Dispositivo_Movil;
 
 public class Smartphone extends DispositivoMovil{
 
