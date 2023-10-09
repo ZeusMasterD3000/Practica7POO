@@ -35,7 +35,7 @@ public class Comprador {
 
     // Métodos
     public void imprimirDatos(){
-        System.out.println("-------Comprador-------");
+        System.out.println("-------------- Comprador --------------\n");
         System.out.println("Nombre: " + nombre);
         System.out.println("Saldo: " + saldo);
     }

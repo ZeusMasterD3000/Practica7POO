@@ -35,6 +35,6 @@ public class VIP extends Socio{
     }
 
     public void cashback(double cargo){
-        this.puntos = cargo*0.02;
+        this.puntos += cargo*0.1;
     }
 }
