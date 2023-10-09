@@ -8,7 +8,9 @@ import Productos.Computadora.*;
 public class Principal {
     public static void main(String[] args) {
         
+        Scanner scanner = new Scanner(System.in);
         ArrayList<DispositivoElectronico> carritoDeCompras = new ArrayList<>();
+
         ArrayList<DispositivoElectronico> celulares = new ArrayList<>();
         celulares.add(new Celular("1234", "nokia", 500.50, "3G", "1.3 megapixeles", true));
         celulares.add(new Celular("5234", "nokia 106", 437, "3G", "1.3 megapixeles", true));
@@ -38,12 +40,12 @@ public class Principal {
         PCs.add(new PC("1798", "Toshiba", 19_000, "Nvidia 3500", 24, true));
         PCs.add(new PC("1850", "Asus", 45_000, "Nvidia Geo Force 5000", 64, true));
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Inicia sesion: ");
+        System.out.println("\n------------- Inicia sesion -------------\n");
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
         System.out.print("Tomando en cuenta que el saldo establece tu categoria:\nEstudiante - Saldo < 10,000 \nSocio - 10,000, < saldo < 25,000 \nVIP - saldo > 25,000\nIngresa tu saldo: ");
         double saldo = scanner.nextDouble();
+        scanner.nextLine();
 
         if(saldo<0){
             System.out.println("Usted nos debe dinero, larguese de aqui");
