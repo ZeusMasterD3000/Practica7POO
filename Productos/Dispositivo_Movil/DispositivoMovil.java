@@ -24,6 +24,7 @@ public class DispositivoMovil extends DispositivoElectronico{
     }
 
     // Métodos
+    @Override
     public void imprimirDatos(){
         System.out.println("\n--------------- Caracteristicas ---------------\n");
         System.out.println("Camara: "+getCamara());
