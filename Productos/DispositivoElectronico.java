@@ -28,8 +28,8 @@ public class DispositivoElectronico {
     // Métodos
     public void imprimirProduto(){
         System.out.print(getMarca());
-        System.out.print(" ("+getID()+") ");
-        System.out.print("$"+getPrecio());
+        System.out.print(" ("+getID()+")");
+        System.out.print(" $"+getPrecio());
     }
     
 }

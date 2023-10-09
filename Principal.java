@@ -64,5 +64,14 @@ public class Principal {
                 VIP comprador = new VIP(nombre, saldo, noMembresia, categoriaMembresia);
             }
         }
+        System.out.println("------------------ Productos ------------------");
+        System.out.println("---- Marca ---- ---- ID ---- ---- Precio ----\n");
+        for(ArrayList<DispositivoElectronico> lista : productos){
+            for(DispositivoElectronico i : lista){
+                System.out.print("- ");
+                i.imprimirProduto();
+                System.out.println();
+            }
+        }
     }
 }
