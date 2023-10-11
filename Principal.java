@@ -157,7 +157,9 @@ public class Principal {
                     System.out.println("\n--------------- Caja de Cobro ---------------\n");
                     if(estudiante != null){
                         if(estudiante.getSaldo() >= estudiante.getCargo()){
-                            System.out.println("Usted va a pagar "+estudiante.getCargo()+" por lo que su vuelto es de "+(estudiante.getSaldo()-estudiante.getCargo()));
+                            System.out.println("Usted va a pagar "+estudiante.getCargo()+" por lo que su queda con "+(estudiante.getSaldo()-estudiante.getCargo()));
+                            estudiante.setCargo(0);
+                            estudiante.setSaldo((estudiante.getSaldo()-estudiante.getCargo()));
                             System.out.println("... .... ... Tenga un bonito dia ... .... ...");
                         }else{
                             System.out.println("Usted va a pagar "+estudiante.getCargo()+" pero su saldo es insuficiente");
@@ -167,14 +169,15 @@ public class Principal {
                                 int indice_producto = quitarProductos(dp, carritoDeCompras);
                                 carritoDeCompras.remove(indice_producto);
                             }else{
-                                System.out.println("... .... ... Usted no podra salir hasta que nos pague ... .... ...");
-                                opcion = 10;
+                                System.out.println("... .... ... Usted no podra irse hasta que nos pague ... .... ...");
                             }
                         }
                     }else{
                         if(socio != null){
                             if(socio.getSaldo() >= socio.getCargo()){
-                                System.out.println("Usted va a pagar "+socio.getCargo()+" por lo que su vuelto es de "+(socio.getSaldo()-socio.getCargo()));
+                                System.out.println("Usted va a pagar "+socio.getCargo()+" por lo que su queda con "+(socio.getSaldo()-socio.getCargo()));
+                                socio.setCargo(0);
+                                socio.setSaldo((socio.getSaldo()-socio.getCargo()));
                                 System.out.println("... .... ... Tenga un bonito dia ... .... ...");
                             }else{
                                 System.out.println("Usted va a pagar "+socio.getCargo()+" pero su saldo es insuficiente");
@@ -184,14 +187,14 @@ public class Principal {
                                     int indice_producto = quitarProductos(dp, carritoDeCompras);
                                     carritoDeCompras.remove(indice_producto);
                                 }else{
-                                    System.out.println("... .... ... Usted no podra salir hasta que nos pague ... .... ...");
-                                    opcion = 10;
+                                    System.out.println("... .... ... Usted no podra irse hasta que nos pague ... .... ...");
                                 }
                             }
                         }else{
                             if(vip.getSaldo() >= vip.getCargo()){
-                                System.out.println("Usted va a pagar "+vip.getCargo()+" por lo que su vuelto es de "+(vip.getSaldo()-vip.getCargo()));
-                                vip.setCargo(seleccion);
+                                System.out.println("Usted va a pagar "+vip.getCargo()+" por lo que su saldo queda con "+(vip.getSaldo()-vip.getCargo()));
+                                vip.setCargo(0);
+                                vip.setSaldo((vip.getSaldo()-vip.getCargo()));
                                 System.out.println("... .... ... Tenga un bonito dia ... .... ...");
                             }else{
                                 System.out.println("Usted va a pagar "+vip.getCargo()+" pero su saldo es insuficiente");
@@ -201,8 +204,7 @@ public class Principal {
                                     int indice_producto = quitarProductos(dp, carritoDeCompras);
                                     carritoDeCompras.remove(indice_producto);
                                 }else{
-                                    System.out.println("... .... ... Usted no podra salir hasta que nos pague ... .... ...");
-                                    opcion = 10;
+                                    System.out.println("... .... ... Usted no podra irse hasta que nos pague ... .... ...");
                                 }
                             }
                         }
@@ -210,9 +212,27 @@ public class Principal {
                     break;
 
                 case 5:
-                    scanner.close();
-                    System.out.println("Gracias por sus selecciones, ahora pase a la zona de cobro");
-                    break;
+                    if(estudiante != null){
+                        if(estudiante.getCargo() == 0){
+                            scanner.close();
+                            System.out.println("Gracias por sus selecciones, ahora pase a la zona de cobro");
+                            return;
+                        }
+                    }else{
+                        if(socio != null){
+                            if(socio.getCargo() == 0){
+                                scanner.close();
+                                System.out.println("Gracias por sus selecciones, ahora pase a la zona de cobro");
+                                return;
+                            }
+                        }else{
+                            if(vip.getCargo() == 0){
+                                scanner.close();
+                                System.out.println("Gracias por sus selecciones, ahora pase a la zona de cobro");
+                                return;
+                            }
+                        }
+                    }
                 default:
                     System.out.println("Opcion no valida");
             }
