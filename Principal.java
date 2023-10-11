@@ -7,7 +7,7 @@ import Productos.Computadora.*;
 
 public class Principal {
     public static void main(String[] args) {
-        
+
         Scanner scanner = new Scanner(System.in);
         ArrayList<DispositivoElectronico> carritoDeCompras = new ArrayList<>();
 
@@ -47,6 +47,10 @@ public class Principal {
         double saldo = scanner.nextDouble();
         scanner.nextLine();
 
+        Estudiante estudiante = null;
+        Socio socio = null;
+        VIP vip = null;
+
         if(saldo<0){
             System.out.println("Usted nos debe dinero, larguese de aqui");
             System.exit(0);
@@ -54,30 +58,32 @@ public class Principal {
         if(saldo<10000){
             System.out.print("Usted es un estudiante\nIngrese la escuela de procedencia: ");
             String escuela = scanner.nextLine();
-            Estudiante comprador = new Estudiante(nombre, saldo, escuela);
+            estudiante = new Estudiante(nombre, saldo, escuela);
         }else{
             if(saldo>10000 && saldo<25000){
                 System.out.print("Usted es un socio\nIngrese su numero de membresia: ");
                 String noMembresia = scanner.nextLine();
-                Socio comprador = new Socio(nombre, saldo, noMembresia);
+                socio = new Socio(nombre, saldo, noMembresia);
             }else{
                 System.out.print("Usted es VIP\nIngrese su numero y categoria de la membresia: ");
                 String noMembresia = scanner.nextLine();
                 String categoriaMembresia = scanner.nextLine();
-                VIP comprador = new VIP(nombre, saldo, noMembresia, categoriaMembresia);
+                vip = new VIP(nombre, saldo, noMembresia, categoriaMembresia);
             }
         }
 
         int opcion, opcion2, seleccion;
+        System.out.println("---------- Bienvenido a la tienda Coper-Brent ----------\n");
         do{
-            System.out.println("Bienvenido a la tienda Coper-Brent");
-            System.out.println("Que desea comprar?");
+            System.out.println("--------------- Menu ---------------\n");
             System.out.println("1.Computadoras\n2.Dispositivos moviles\n3.Televisiones\n4.Salir");
+            System.out.print("Que desea comprar?: ");
             opcion = scanner.nextInt();
             switch(opcion){
                 case 1:
-                    System.out.println("Que tipo de computadora desea comprar?");
+                    System.out.println("---------- Computadoras ----------\n");
                     System.out.println("1.Laptop\n2.PC");
+                    System.out.print("Que tipo de computadora desea comprar?: ");
                     opcion2 = scanner.nextInt();
                     switch(opcion2){
                         case 1:
@@ -86,7 +92,6 @@ public class Principal {
                                 break;
                             }
                             carritoDeCompras.add(laptops.get(seleccion));
-                            laptops.remove(seleccion);
                             break;
                         case 2:
                             seleccion = Submenu("PC", PCs);
@@ -94,10 +99,9 @@ public class Principal {
                                 break;
                             }
                             carritoDeCompras.add(PCs.get(seleccion));
-                            PCs.remove(seleccion);
                             break;
                         default:
-                            System.out.println("Opcion no valida");
+                            System.out.println("... .... ... Opcion no valida ... .... ...");
                     }
                     break;
                 case 2:
@@ -111,7 +115,6 @@ public class Principal {
                                 break;
                             }
                             carritoDeCompras.add(celulares.get(seleccion));
-                            celulares.remove(seleccion);
                             break;
                         case 2:
                             seleccion = Submenu("Smartphone", smartphones);
@@ -119,7 +122,6 @@ public class Principal {
                                 break;
                             }
                             carritoDeCompras.add(smartphones.get(seleccion));
-                            smartphones.remove(seleccion);
                             break;
                         case 3:
                             seleccion = Submenu("Tablet", tabletas);
@@ -127,7 +129,6 @@ public class Principal {
                                 break;
                             }
                             carritoDeCompras.add(tabletas.get(seleccion));
-                            tabletas.remove(seleccion);
                             break;
                         default:
                             System.out.println("Opcion no valida");
@@ -139,7 +140,6 @@ public class Principal {
                         break;
                     }
                     carritoDeCompras.add(televisiones.get(seleccion));
-                    televisiones.remove(seleccion);
                     break;
                 case 4:
                     scanner.close();
@@ -149,7 +149,19 @@ public class Principal {
                     System.out.println("Opcion no valida");
             }
         }while(opcion!= 4);
-    
+        
+        for(DispositivoElectronico producto : carritoDeCompras){
+            if(estudiante != null){
+                estudiante.descuento(producto.getPrecio());
+            }else{
+                if(socio != null){
+                    socio.promocion(producto.getPrecio());
+                }else{
+                    vip.promocion(producto.getPrecio());
+                    vip.cashback(producto.getPrecio());
+                }
+            }
+        }
 
     }
     public static int Submenu(String nombre, ArrayList<DispositivoElectronico> tipo){

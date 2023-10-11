@@ -4,7 +4,7 @@ public class Comprador {
 
     // Atributos
     String nombre;
-    double saldo;
+    double saldo = 0;
     double cargo = 0; //Cargo de dinero
 
     // Constructor
