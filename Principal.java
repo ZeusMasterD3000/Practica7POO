@@ -43,7 +43,7 @@ public class Principal {
         System.out.println("\n------------- Inicia sesion -------------\n");
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
-        System.out.print("Tomando en cuenta que el saldo establece tu categoria:\nEstudiante: Saldo menor a 10,000\nSocio: Saldo mayor a 10,000 pero menor a 25,000\nVIP: Saldo mayor a 25,000\n\nIngresa tu saldo: ");
+        System.out.print("\nTomando en cuenta que el saldo establece tu categoria:\nEstudiante: Saldo menor a 10,000\nSocio: Saldo mayor a 10,000 pero menor a 25,000\nVIP: Saldo mayor a 25,000\n\nIngresa tu saldo: ");
         double saldo = scanner.nextDouble();
         scanner.nextLine();
 
@@ -185,7 +185,7 @@ public class Principal {
                     System.out.println("\n--------------- Caja de Cobro ---------------\n");
                     if(estudiante != null){
                         if(estudiante.getSaldo() >= estudiante.getCargo()){
-                            System.out.println("Usted va a pagar "+estudiante.getCargo()+" por lo que su queda con "+(estudiante.getSaldo()-estudiante.getCargo()));
+                            System.out.println("Usted va a pagar "+estudiante.getCargo()+" por lo que su saldo queda con "+(estudiante.getSaldo()-estudiante.getCargo()));
                             estudiante.setCargo(0);
                             estudiante.setSaldo((estudiante.getSaldo()-estudiante.getCargo()));
                         }else{
@@ -203,7 +203,7 @@ public class Principal {
                     }else{
                         if(socio != null){
                             if(socio.getSaldo() >= socio.getCargo()){
-                                System.out.println("Usted va a pagar "+socio.getCargo()+" por lo que su queda con "+(socio.getSaldo()-socio.getCargo()));
+                                System.out.println("Usted va a pagar "+socio.getCargo()+" por lo que su saldo queda con "+(socio.getSaldo()-socio.getCargo()));
                                 socio.setCargo(0);
                                 socio.setSaldo((socio.getSaldo()-socio.getCargo()));
                             }else{
