@@ -76,7 +76,7 @@ public class Principal {
         System.out.println("---------- Bienvenido a la tienda Coper-Brent ----------\n");
         do{
             System.out.println("--------------- Menu ---------------\n");
-            System.out.println("1.Computadoras\n2.Dispositivos moviles\n3.Televisiones\n4.Salir");
+            System.out.println("1.Computadoras\n2.Dispositivos moviles\n3.Televisiones\n4.Pagar\n5.Salir");
             System.out.print("Que desea comprar?: ");
             opcion = scanner.nextInt();
             switch(opcion){
@@ -142,28 +142,84 @@ public class Principal {
                     carritoDeCompras.add(televisiones.get(seleccion));
                     break;
                 case 4:
+                    for(DispositivoElectronico producto : carritoDeCompras){
+                        if(estudiante != null){
+                            estudiante.descuento(producto.getPrecio());
+                        }else{
+                            if(socio != null){
+                                socio.promocion(producto.getPrecio());
+                            }else{
+                                vip.promocion(producto.getPrecio());
+                                vip.cashback(producto.getPrecio());
+                            }
+                        }
+                    }
+                    System.out.println("\n--------------- Caja de Cobro ---------------\n");
+                    if(estudiante != null){
+                        if(estudiante.getSaldo() >= estudiante.getCargo()){
+                            System.out.println("Usted va a pagar "+estudiante.getCargo()+" por lo que su vuelto es de "+(estudiante.getSaldo()-estudiante.getCargo()));
+                            System.out.println("... .... ... Tenga un bonito dia ... .... ...");
+                        }else{
+                            System.out.println("Usted va a pagar "+estudiante.getCargo()+" pero su saldo es insuficiente");
+                            System.out.println("Desea dejar algun producto? (1.SI / 2.NO)");
+                            int dp = scanner.nextInt();
+                            if(dp == 1){
+                                int indice_producto = quitarProductos(dp, carritoDeCompras);
+                                carritoDeCompras.remove(indice_producto);
+                            }else{
+                                System.out.println("... .... ... Usted no podra salir hasta que nos pague ... .... ...");
+                                opcion = 10;
+                            }
+                        }
+                    }else{
+                        if(socio != null){
+                            if(socio.getSaldo() >= socio.getCargo()){
+                                System.out.println("Usted va a pagar "+socio.getCargo()+" por lo que su vuelto es de "+(socio.getSaldo()-socio.getCargo()));
+                                System.out.println("... .... ... Tenga un bonito dia ... .... ...");
+                            }else{
+                                System.out.println("Usted va a pagar "+socio.getCargo()+" pero su saldo es insuficiente");
+                                System.out.println("Desea dejar algun producto? (1.SI / 2.NO)");
+                                int dp = scanner.nextInt();
+                                if(dp == 1){
+                                    int indice_producto = quitarProductos(dp, carritoDeCompras);
+                                    carritoDeCompras.remove(indice_producto);
+                                }else{
+                                    System.out.println("... .... ... Usted no podra salir hasta que nos pague ... .... ...");
+                                    opcion = 10;
+                                }
+                            }
+                        }else{
+                            if(vip.getSaldo() >= vip.getCargo()){
+                                System.out.println("Usted va a pagar "+vip.getCargo()+" por lo que su vuelto es de "+(vip.getSaldo()-vip.getCargo()));
+                                vip.setCargo(seleccion);
+                                System.out.println("... .... ... Tenga un bonito dia ... .... ...");
+                            }else{
+                                System.out.println("Usted va a pagar "+vip.getCargo()+" pero su saldo es insuficiente");
+                                System.out.println("Desea dejar algun producto? (1.SI / 2.NO)");
+                                int dp = scanner.nextInt();
+                                if(dp == 1){
+                                    int indice_producto = quitarProductos(dp, carritoDeCompras);
+                                    carritoDeCompras.remove(indice_producto);
+                                }else{
+                                    System.out.println("... .... ... Usted no podra salir hasta que nos pague ... .... ...");
+                                    opcion = 10;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
+                case 5:
                     scanner.close();
                     System.out.println("Gracias por sus selecciones, ahora pase a la zona de cobro");
                     break;
                 default:
                     System.out.println("Opcion no valida");
             }
-        }while(opcion!= 4);
-        
-        for(DispositivoElectronico producto : carritoDeCompras){
-            if(estudiante != null){
-                estudiante.descuento(producto.getPrecio());
-            }else{
-                if(socio != null){
-                    socio.promocion(producto.getPrecio());
-                }else{
-                    vip.promocion(producto.getPrecio());
-                    vip.cashback(producto.getPrecio());
-                }
-            }
-        }
+        }while(opcion != 5);
 
     }
+
     public static int Submenu(String nombre, ArrayList<DispositivoElectronico> tipo){
         if(tipo.isEmpty()){
             System.out.println("Lo siento, no contamos con " + nombre + "s por el momento");
@@ -179,5 +235,17 @@ public class Principal {
         }
         System.out.print("Eliga el numero del producto: ");
         return (sc.nextInt() -1);
+    }
+
+    public static int quitarProductos(int dp, ArrayList<DispositivoElectronico> carritoDeCompras){
+        Scanner sc = new Scanner(System.in);
+        for(DispositivoElectronico producto : carritoDeCompras){
+            System.out.print(dp + " ");
+            producto.imprimirDatos();
+            dp ++;
+        }
+        System.out.println("Producto a retirar de su carrito de compras: ");
+        int pp = sc.nextInt();
+        return pp;
     }
 }
