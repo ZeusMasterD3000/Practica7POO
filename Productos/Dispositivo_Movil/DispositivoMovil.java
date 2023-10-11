@@ -26,6 +26,7 @@ public class DispositivoMovil extends DispositivoElectronico{
     // Métodos
     @Override
     public void imprimirDatos(){
+        super.imprimirDatos();
         System.out.println("\n--------------- Caracteristicas ---------------\n");
         System.out.println("Camara: "+getCamara());
         System.out.println("Red "+getRedes());
