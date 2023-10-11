@@ -205,7 +205,7 @@ public class Principal {
                             int dp = scanner.nextInt();
                             if(dp == 1){
                                 int indice_producto = quitarProductos(dp, carritoDeCompras);
-                                carritoDeCompras.remove(indice_producto);
+                                carritoDeCompras.remove(indice_producto-1);
                             }else{
                                 System.out.println("\n... .... ... Usted no podra irse hasta que nos pague ... .... ...");
                             }
@@ -223,7 +223,7 @@ public class Principal {
                                 int dp = scanner.nextInt();
                                 if(dp == 1){
                                     int indice_producto = quitarProductos(dp, carritoDeCompras);
-                                    carritoDeCompras.remove(indice_producto);
+                                    carritoDeCompras.remove(indice_producto-1);
                                 }else{
                                     System.out.println("\n... .... ... Usted no podra irse hasta que nos pague ... .... ...");
                                 }
@@ -240,7 +240,7 @@ public class Principal {
                                 int dp = scanner.nextInt();
                                 if(dp == 1){
                                     int indice_producto = quitarProductos(dp, carritoDeCompras);
-                                    carritoDeCompras.remove(indice_producto);
+                                    carritoDeCompras.remove(indice_producto-1);
                                 }else{
                                     System.out.println("\n... .... ... Usted no podra irse hasta que nos pague ... .... ...");
                                 }
