@@ -28,6 +28,6 @@ public class Estudiante extends Comprador{
     }
 
     public double descuento(double cargo){
-        return this.cargo += cargo - (cargo * 0.07);
+        return this.cargo += (cargo * 0.93);
     }
 }

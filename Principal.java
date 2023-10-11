@@ -68,8 +68,9 @@ public class Principal {
                 socio = new Socio(nombre, saldo, noMembresia);
             }else{
                 System.out.println("\n--------------- VIP ---------------");
-                System.out.print("Ingrese su numero y categoria de la membresia: ");
+                System.out.print("Ingrese su numero: ");
                 String noMembresia = scanner.nextLine();
+                System.out.print("Categoria de la membresia: ");
                 String categoriaMembresia = scanner.nextLine();
                 vip = new VIP(nombre, saldo, noMembresia, categoriaMembresia);
             }
@@ -170,18 +171,27 @@ public class Principal {
                     carritoDeCompras.add(televisiones.get(seleccion));
                     break;
                 case 4:
-                    for(DispositivoElectronico producto : carritoDeCompras){
-                        if(estudiante != null){
-                            estudiante.descuento(producto.getPrecio());
+                    if(estudiante != null){
+                        estudiante.setCargo(0);
+                    }else{
+                        if(socio != null){
+                            socio.setCargo(0);
                         }else{
-                            if(socio != null){
-                                socio.promocion(producto.getPrecio());
-                            }else{
-                                vip.promocion(producto.getPrecio());
-                                vip.cashback(producto.getPrecio());
-                            }
+                            vip.setCargo(0);
                         }
                     }
+                    for(DispositivoElectronico producto : carritoDeCompras){
+                            if(estudiante != null){
+                                estudiante.descuento(producto.getPrecio());
+                            }else{
+                                if(socio != null){
+                                    socio.promocion(producto.getPrecio());
+                                }else{
+                                    vip.promocion(producto.getPrecio());
+                                    vip.cashback(producto.getPrecio());
+                                }
+                            }
+                        }
                     System.out.println("\n--------------- Caja de Cobro ---------------\n");
                     if(estudiante != null){
                         if(estudiante.getSaldo() >= estudiante.getCargo()){
@@ -289,7 +299,7 @@ public class Principal {
     public static int quitarProductos(int dp, ArrayList<DispositivoElectronico> carritoDeCompras){
         Scanner sc = new Scanner(System.in);
         for(DispositivoElectronico producto : carritoDeCompras){
-            System.out.print(dp + " ");
+            System.out.println("\n--------------- PRODUCTO " + dp + " ---------------");
             producto.imprimirDatos();
             dp ++;
         }
@@ -326,4 +336,3 @@ public class Principal {
         }
     }
 }
-

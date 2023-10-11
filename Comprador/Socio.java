@@ -28,7 +28,7 @@ public class Socio extends Comprador{
     }
 
     public double promocion(double cargo){
-        return this.cargo += cargo - (cargo * 0.25);
+        return this.cargo += (cargo * 0.75);
     }
 }   
 
