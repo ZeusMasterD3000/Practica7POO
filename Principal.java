@@ -43,7 +43,7 @@ public class Principal {
         System.out.println("\n------------- Inicia sesion -------------\n");
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
-        System.out.print("Tomando en cuenta que el saldo establece tu categoria:\nEstudiante - Saldo < 10,000 \nSocio - 10,000, < saldo < 25,000 \nVIP - saldo > 25,000\nIngresa tu saldo: ");
+        System.out.print("\nTomando en cuenta que el saldo establece tu categoria:\nEstudiante: Saldo menor a 10,000\nSocio: Saldo mayor a 10,000 pero menor a 25,000\nVIP: Saldo mayor a 25,000\n\nIngresa tu saldo: ");
         double saldo = scanner.nextDouble();
         scanner.nextLine();
 
@@ -56,16 +56,19 @@ public class Principal {
             System.exit(0);
         }
         if(saldo<10000){
-            System.out.print("Usted es un estudiante\nIngrese la escuela de procedencia: ");
+            System.out.println("\n--------------- ESTUDIANTE ---------------");
+            System.out.print("Ingrese la escuela de procedencia: ");
             String escuela = scanner.nextLine();
             estudiante = new Estudiante(nombre, saldo, escuela);
         }else{
             if(saldo>10000 && saldo<25000){
-                System.out.print("Usted es un socio\nIngrese su numero de membresia: ");
+                System.out.println("\n--------------- SOCIO ---------------");
+                System.out.print("Ingrese su numero de membresia: ");
                 String noMembresia = scanner.nextLine();
                 socio = new Socio(nombre, saldo, noMembresia);
             }else{
-                System.out.print("Usted es VIP\nIngrese su numero y categoria de la membresia: ");
+                System.out.println("\n--------------- VIP ---------------");
+                System.out.print("Ingrese su numero y categoria de la membresia: ");
                 String noMembresia = scanner.nextLine();
                 String categoriaMembresia = scanner.nextLine();
                 vip = new VIP(nombre, saldo, noMembresia, categoriaMembresia);
@@ -97,17 +100,17 @@ public class Principal {
         }
         
         int opcion, opcion2, seleccion;
-        System.out.println("---------- Bienvenido a la tienda Coper-Brent ----------\n");
+        System.out.println("\n---------- Bienvenido a la tienda Coper-Brent ----------");
         do{
-            System.out.println("--------------- Menu ---------------\n");
-            System.out.println("1.Computadoras\n2.Dispositivos moviles\n3.Televisiones\n4.Pagar\n5.Salir");
-            System.out.print("Que desea comprar?: ");
+            System.out.println("\n--------------- Menu ---------------");
+            System.out.println("1.Comprar computadoras\n2.Comprar Dispositivos moviles\n3.Comprar Televisiones\n4.Pagar\n5.Salir");
+            System.out.print("Opcion: ");
             opcion = scanner.nextInt();
             switch(opcion){
                 case 1:
-                    System.out.println("---------- Computadoras ----------\n");
+                    System.out.println("\n--------------- Computadoras ---------------");
                     System.out.println("1.Laptop\n2.PC");
-                    System.out.print("Que tipo de computadora desea comprar?: ");
+                    System.out.print("Tipo de computadora a comprar: ");
                     opcion2 = scanner.nextInt();
                     switch(opcion2){
                         case 1:
@@ -125,12 +128,13 @@ public class Principal {
                             carritoDeCompras.add(PCs.get(seleccion));
                             break;
                         default:
-                            System.out.println("... .... ... Opcion no valida ... .... ...");
+                            System.out.println("\n... .... ... Opcion no valida ... .... ...");
                     }
                     break;
                 case 2:
-                    System.out.println("Que tipo de dispositivo movil desea comprar?");
+                    System.out.println("\n---------- Dispositivo Movil ----------");
                     System.out.println("1.Celular\n2.Smartphone\n3.Tablet");
+                    System.out.print("Opcion: ");
                     opcion2 = scanner.nextInt();
                     switch(opcion2){
                         case 1:
@@ -155,7 +159,7 @@ public class Principal {
                             carritoDeCompras.add(tabletas.get(seleccion));
                             break;
                         default:
-                            System.out.println("Opcion no valida");
+                            System.out.println("\n... .... ... Opcion no valida ... .... ...");
                     }
                     break;
                 case 3:
@@ -181,37 +185,37 @@ public class Principal {
                     System.out.println("\n--------------- Caja de Cobro ---------------\n");
                     if(estudiante != null){
                         if(estudiante.getSaldo() >= estudiante.getCargo()){
-                            System.out.println("Usted va a pagar "+estudiante.getCargo()+" por lo que su queda con "+(estudiante.getSaldo()-estudiante.getCargo()));
+                            System.out.println("Usted va a pagar "+estudiante.getCargo()+" por lo que su saldo queda con "+(estudiante.getSaldo()-estudiante.getCargo()));
                             estudiante.setCargo(0);
                             estudiante.setSaldo((estudiante.getSaldo()-estudiante.getCargo()));
-                            System.out.println("... .... ... Tenga un bonito dia ... .... ...");
                         }else{
                             System.out.println("Usted va a pagar "+estudiante.getCargo()+" pero su saldo es insuficiente");
                             System.out.println("Desea dejar algun producto? (1.SI / 2.NO)");
+                            System.out.print("Opcion: ");
                             int dp = scanner.nextInt();
                             if(dp == 1){
                                 int indice_producto = quitarProductos(dp, carritoDeCompras);
                                 carritoDeCompras.remove(indice_producto);
                             }else{
-                                System.out.println("... .... ... Usted no podra irse hasta que nos pague ... .... ...");
+                                System.out.println("\n... .... ... Usted no podra irse hasta que nos pague ... .... ...");
                             }
                         }
                     }else{
                         if(socio != null){
                             if(socio.getSaldo() >= socio.getCargo()){
-                                System.out.println("Usted va a pagar "+socio.getCargo()+" por lo que su queda con "+(socio.getSaldo()-socio.getCargo()));
+                                System.out.println("Usted va a pagar "+socio.getCargo()+" por lo que su saldo queda con "+(socio.getSaldo()-socio.getCargo()));
                                 socio.setCargo(0);
                                 socio.setSaldo((socio.getSaldo()-socio.getCargo()));
-                                System.out.println("... .... ... Tenga un bonito dia ... .... ...");
                             }else{
                                 System.out.println("Usted va a pagar "+socio.getCargo()+" pero su saldo es insuficiente");
                                 System.out.println("Desea dejar algun producto? (1.SI / 2.NO)");
+                                System.out.print("Opcion: ");
                                 int dp = scanner.nextInt();
                                 if(dp == 1){
                                     int indice_producto = quitarProductos(dp, carritoDeCompras);
                                     carritoDeCompras.remove(indice_producto);
                                 }else{
-                                    System.out.println("... .... ... Usted no podra irse hasta que nos pague ... .... ...");
+                                    System.out.println("\n... .... ... Usted no podra irse hasta que nos pague ... .... ...");
                                 }
                             }
                         }else{
@@ -219,16 +223,16 @@ public class Principal {
                                 System.out.println("Usted va a pagar "+vip.getCargo()+" por lo que su saldo queda con "+(vip.getSaldo()-vip.getCargo()));
                                 vip.setCargo(0);
                                 vip.setSaldo((vip.getSaldo()-vip.getCargo()));
-                                System.out.println("... .... ... Tenga un bonito dia ... .... ...");
                             }else{
                                 System.out.println("Usted va a pagar "+vip.getCargo()+" pero su saldo es insuficiente");
                                 System.out.println("Desea dejar algun producto? (1.SI / 2.NO)");
+                                System.out.print("Opcion: ");
                                 int dp = scanner.nextInt();
                                 if(dp == 1){
                                     int indice_producto = quitarProductos(dp, carritoDeCompras);
                                     carritoDeCompras.remove(indice_producto);
                                 }else{
-                                    System.out.println("... .... ... Usted no podra irse hasta que nos pague ... .... ...");
+                                    System.out.println("\n... .... ... Usted no podra irse hasta que nos pague ... .... ...");
                                 }
                             }
                         }
@@ -239,24 +243,26 @@ public class Principal {
                     if(estudiante != null){
                         if(estudiante.getCargo() == 0){
                             scanner.close();
-                            System.out.println("Gracias por sus selecciones, ahora pase a la zona de cobro");
+                            System.out.println("... .... ... Tenga un bonito dia ... .... ...");
                             return;
                         }
                     }else{
                         if(socio != null){
                             if(socio.getCargo() == 0){
                                 scanner.close();
-                                System.out.println("Gracias por sus selecciones, ahora pase a la zona de cobro");
+                                System.out.println("... .... ... Tenga un bonito dia ... .... ...");
                                 return;
                             }
                         }else{
                             if(vip.getCargo() == 0){
                                 scanner.close();
-                                System.out.println("Gracias por sus selecciones, ahora pase a la zona de cobro");
+                                System.out.println("... .... ... Tenga un bonito dia ... .... ...");
                                 return;
                             }
                         }
                     }
+                    opcion = -1;
+                    break;
                 default:
                     System.out.println("Opcion no valida");
             }
@@ -266,18 +272,17 @@ public class Principal {
 
     public static int Submenu(String nombre, ArrayList<DispositivoElectronico> tipo){
         if(tipo.isEmpty()){
-            System.out.println("Lo siento, no contamos con " + nombre + "s para su tipo de cliente, por el momento ");
+            System.out.println("\nLo siento, no contamos con " + nombre + "s por el momento");
             return -1;
         }
         Scanner sc = new Scanner(System.in);
-        System.out.println("Las " + nombre + "s que tenemos son:");
         int i=1;
         for(DispositivoElectronico lista: tipo){
-            System.out.println("---------- " + nombre + " #" + i + " ----------");
+            System.out.println("\n--------------- " + nombre + " #" + i + " ---------------");
             i++;
             lista.imprimirDatos();
         }
-        System.out.print("Eliga el numero del producto: ");
+        System.out.print("\nEliga el numero del producto: ");
         return (sc.nextInt() -1);
     }
 
@@ -288,7 +293,7 @@ public class Principal {
             producto.imprimirDatos();
             dp ++;
         }
-        System.out.println("Producto a retirar de su carrito de compras: ");
+        System.out.print("\nProducto a retirar de su carrito de compras: ");
         int pp = sc.nextInt();
         return pp;
     }
