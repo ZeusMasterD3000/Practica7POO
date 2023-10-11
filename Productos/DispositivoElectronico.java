@@ -27,11 +27,10 @@ public class DispositivoElectronico {
 
     // Métodos
     public void imprimirDatos(){
-        System.out.println("------------------ Productos ------------------");
-        System.out.println("---- Marca ---- ---- ID ---- ---- Precio ----\n");
+        System.out.println("---- Marca ---- ---- ID ---- ---- Precio ----");
         System.out.print(getMarca());
         System.out.print(" ("+getID()+")");
-        System.out.print(" $"+getPrecio());
+        System.out.print(" $"+getPrecio()+"\n");
     }
     
 }
