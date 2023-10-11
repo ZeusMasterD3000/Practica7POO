@@ -71,7 +71,31 @@ public class Principal {
                 vip = new VIP(nombre, saldo, noMembresia, categoriaMembresia);
             }
         }
-
+        if(estudiante!= null){
+            PCs = limitarCompra(estudiante.getSaldo(), PCs);
+            laptops = limitarCompra(estudiante.getSaldo(), laptops);
+            televisiones = limitarCompra(estudiante.getSaldo(), televisiones);
+            tabletas = limitarCompra(estudiante.getSaldo(), tabletas);
+            smartphones = limitarCompra(estudiante.getSaldo(), smartphones);
+            celulares = limitarCompra(estudiante.getSaldo(), celulares);
+        }else{
+            if(socio != null){
+                PCs = limitarCompra(socio.getSaldo(), PCs);
+                laptops = limitarCompra(socio.getSaldo(), laptops);
+                televisiones = limitarCompra(socio.getSaldo(), televisiones);
+                tabletas = limitarCompra(socio.getSaldo(), tabletas);
+                smartphones = limitarCompra(socio.getSaldo(), smartphones);
+                celulares = limitarCompra(socio.getSaldo(), celulares);
+            }else{
+                PCs = limitarCompra(vip.getSaldo(), PCs);
+                laptops = limitarCompra(vip.getSaldo(), laptops);
+                televisiones = limitarCompra(vip.getSaldo(), televisiones);
+                tabletas = limitarCompra(vip.getSaldo(), tabletas);
+                smartphones = limitarCompra(vip.getSaldo(), smartphones);
+                celulares = limitarCompra(vip.getSaldo(), celulares);
+            }
+        }
+        
         int opcion, opcion2, seleccion;
         System.out.println("---------- Bienvenido a la tienda Coper-Brent ----------\n");
         do{
@@ -242,7 +266,7 @@ public class Principal {
 
     public static int Submenu(String nombre, ArrayList<DispositivoElectronico> tipo){
         if(tipo.isEmpty()){
-            System.out.println("Lo siento, no contamos con " + nombre + "s por el momento");
+            System.out.println("Lo siento, no contamos con " + nombre + "s para su tipo de cliente, por el momento ");
             return -1;
         }
         Scanner sc = new Scanner(System.in);
@@ -267,5 +291,33 @@ public class Principal {
         System.out.println("Producto a retirar de su carrito de compras: ");
         int pp = sc.nextInt();
         return pp;
+    }
+
+    public static ArrayList<DispositivoElectronico> limitarCompra(double saldo, ArrayList<DispositivoElectronico> lista){
+        ArrayList<DispositivoElectronico> copia = new ArrayList<>(lista);
+        if(saldo<10000){
+            for(DispositivoElectronico iterar: lista){
+                if(!(iterar.getPrecio()<10000)){
+                    copia.remove(iterar);
+                }
+            }
+            return copia;
+        }else{
+            if(saldo>10000 && saldo<25000){
+                for(DispositivoElectronico iterar: lista){
+                    if(!(iterar.getPrecio()<25000)){
+                        copia.remove(iterar);
+                    }
+                }
+                return copia;
+            }else{
+                for(DispositivoElectronico iterar: lista){
+                    if(!(iterar.getPrecio()>15000)){
+                        copia.remove(iterar);
+                    }
+                }
+                return copia;
+            }
+        }
     }
 }
