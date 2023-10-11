@@ -26,6 +26,7 @@ public class Computadora extends DispositivoElectronico{
     // Métodos
     @Override
     public void imprimirDatos(){
+        super.imprimirDatos();
         System.out.println("\n--------------- Caracteristicas ---------------\n");
         System.out.println("Sistema Operativo: "+getSisOpera());
         System.out.println("Memoria RAM de "+getRam()+" Gb");

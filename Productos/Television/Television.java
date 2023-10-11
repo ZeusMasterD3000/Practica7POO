@@ -31,6 +31,7 @@ public class Television extends DispositivoElectronico{
     // Métodos
     @Override
     public void imprimirDatos(){
+        super.imprimirDatos();
         System.out.println("\n--------------- Caracteristicas ---------------\n");
         System.out.println("Tamaño: "+getTamaño());
         System.out.println("Calidad: "+getCalidadImga());
